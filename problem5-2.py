@@ -87,7 +87,7 @@ for moveLine in moveLines:
         # pop the top block from the source stack
         # and append it to a new stack
         new_stack.append(stacks[sourceStack - 1].pop())
-    
+
     # loop through the new stack
     for i in range(0, countOfBlocksToMove):
         # pop the top block from the new stack
