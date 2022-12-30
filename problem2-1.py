@@ -1,6 +1,6 @@
 # Read file with two characters per line. 
 # For opponent A as rocks, B as paper, C as scissors 
-# For me X as rocks, Y as paper, Z as scissors
+# For X as loss, Y as tie, Z as win
 
 # Open input file
 inputFile = open("input2.txt", "r")
@@ -10,84 +10,83 @@ inputFileLines = inputFile.readlines()
 
 # Initialize variables
 opponent = ""
-me = ""
+result = ""
 total_score = 0
-round_score = 0
+
 
 # If me wins add 6 to round score
 # If me loses add 0 to round score
 # If me ties add 3 to round score
 
-# If me is rocks add 1 to round score
-# If me is paper add 2 to round score
-# If me is scissors add 3 to round score
+# If me is rocks and A add 1 to round score
+# If me is paper and B add 2 to round score
+# If me is scissors and C add 3 to round score
 
 # Loop through input file lines
 for line in inputFileLines:
-    # parse line with opponent and me by space.
+    # parse line with opponent and result by space.
     # clean up line by removing new line character
-    opponent, me = line.strip().split(" ")
+    opponent, result = line.strip().split(" ")
 
-    # # print opponent and me
-    # print("Opponent: " + opponent + " Me: " + me)
+    # Print opponent and result
+    print("Opponent: " + opponent + " Result: " + result)
 
-    # If me is rocks add 1 to score
-    if me == "X":
-        round_score += 1
-    # If me is paper add 2 to score
-    elif me == "Y":
-        round_score += 2
-    # If me is scissors add 3 to score
-    elif me == "Z":
-        round_score += 3
+    round_score = 0
 
-    # # Print round score
-    # print("Round score: " + str(round_score))
+    if result == "X":
+        round_score = 0
+    elif result == "Y":
+        round_score = 3
+    elif result == "Z":
+        round_score = 6
 
-    # If opponent is rocks
+    # If opponent is A and a rock
     if opponent == "A":
-        # If me is rocks
-        if me == "X":
+        # If result is X and a loss
+        if result == "X":
+            # Me is scissors
             round_score += 3
-        # If me is paper
-        elif me == "Y":
-            round_score += 6
-        # If me is scissors
-        elif me == "Z":
-            round_score += 0
-
-    # If opponent is paper
+        # If result is Y and a tie
+        elif result == "Y":
+            # Me is rocks
+            round_score += 1
+        # If result is Z and a win
+        elif result == "Z":
+            # Me is paper
+            round_score += 2
+    # If opponent is B and a paper
     elif opponent == "B":
-        # If me is rocks
-        if me == "X":
-            round_score += 0
-        # If me is paper
-        elif me == "Y":
+        # If result is X and a loss
+        if result == "X":
+            # Me is rocks
+            round_score += 1
+        # If result is Y and a tie
+        elif result == "Y":
+            # Me is paper
+            round_score += 2
+        # If result is Z and a win
+        elif result == "Z":
+            # Me is scissors
             round_score += 3
-        # If me is scissors
-        elif me == "Z":
-            round_score += 6
-
-    # If opponent is scissors
+    # If opponent is C and a scissors
     elif opponent == "C":
-        # If me is rocks
-        if me == "X":
-            round_score += 6
-        # If me is paper
-        elif me == "Y":
-            round_score += 0
-        # If me is scissors
-        elif me == "Z":
+        # If result is X and a loss
+        if result == "X":
+            # Me is paper
+            round_score += 2
+        # If result is Y and a tie
+        elif result == "Y":
+            # Me is scissors
             round_score += 3
+        # If result is Z and a win
+        elif result == "Z":
+            # Me is rocks
+            round_score += 1
 
-    # # Print round score
-    # print("Round score: " + str(round_score))
-
+    # Print round score
+    print("Round score: " + str(round_score))
     # Add round score to total score
     total_score += round_score
-
-    # Reset round score
-    round_score = 0
 
 # Print total score
 print("Total score: " + str(total_score))
