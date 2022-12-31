@@ -1,5 +1,5 @@
-# Read file with two characters per line. 
-# For opponent A as rocks, B as paper, C as scissors 
+# Read file with two characters per line.
+# For opponent A as rocks, B as paper, C as scissors
 # For X as loss, Y as tie, Z as win
 
 # Open input file
